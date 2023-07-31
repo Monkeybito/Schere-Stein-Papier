@@ -16,6 +16,7 @@
     function letPlayerChoose(){
         while (true){
             let playerChoice = prompt("Choose: Rock, Paper or Scissors!").toLowerCase();
+            player = playerChoice;
             if (playerChoice === "rock" || playerChoice=== "paper" || playerChoice === "scissors"){
             switch (playerChoice){
                 case "rock": playerChoice = 1; break
@@ -32,7 +33,7 @@
     }
     
     function rockPaperScissors(player, computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
-        if (player=== computer){
+        if (player === computer){
             console.log("Two Rocks, make a draw!")
         }
         else if (computer===2){
@@ -43,6 +44,6 @@
         }
     }
 
-const player = 1
+let player = ""
 </script>
 </html>
