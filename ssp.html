@@ -13,8 +13,9 @@
         return computerChoice
     }
     
-    let player = ""
-    let count = 0
+    let player = "";
+    let computerCount = 0;
+    let playerCount= 0;
 
     function letPlayerChoose(){
         while (true){
@@ -35,33 +36,52 @@
         }
     }
     
-    function rockPaperScissors(play = letPlayerChoose(), computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
+    function rockPaperScissors(play, computer){                                                                               // rock = 1, paper = 2, scissors = 3;
         if (play === computer){
             console.log(`Both of you chose ${player}, that makes a draw!`)
         }
         else if (play === 1){
             switch(computer){
-                case 2: console.log("The computer paper wraps your Rock, you lose!"); break;
-                case 3: console.log("Your rock smashes the computer's scissors, you win!"); break;
+                case 2: console.log("The computer paper wraps your Rock, you lose!"); return computerCount++;
+                case 3: console.log("Your rock smashes the computer's scissors, you win!"); return playerCount++;
             }
         }
         else if (play === 2){
             switch(computer){
-                case 1: console.log("Your paper wraps the computer's rock, you win"); break;
-                case 3: console.log("Your paper is cut by the computer's scissors, you lose!"); break;
+                case 1: console.log("Your paper wraps the computer's rock, you win"); return playerCount++;
+                case 3: console.log("Your paper is cut by the computer's scissors, you lose!"); return computerCount++;
             }
         }
         else if (play === 3){
             switch(computer){
-                case 2: console.log("The computer paper is cut by your scissors, you win!"); break;
-                case 1: console.log("The rock smashes your scissors, you lose!"); break;
+                case 2: console.log("The computer paper is cut by your scissors, you win!"); return playerCount++;
+                case 1: console.log("The rock smashes your scissors, you lose!"); return computerCount++;
             }
         }
     }
     
     function game(){
         console.log("We are going to play five rounds of rock, paper and scissors!")
-        count = 0
+        let count = 0;
+        playerCount = 0;
+        computerCount = 0;
+        while (count < 5){
+            rockPaperScissors(letPlayerChoose(), getComputerChoice());
+            console.log("You won " + playerCount + " games.");
+            console.log("The computer won " + computerCount + " games.")
+            count++
+        }
+        if (computerCount > playerCount) {
+            console.log("The computer has won. Long live the machine!")
+        }
+        else if (playerCount > computerCount){
+            console.log("You did win!")
+        }
+
+        else{
+            console.log("An unexpected draw :O")
+        }
+
     }
 
 
