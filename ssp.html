@@ -32,17 +32,30 @@
         }
     }
     
-    function rockPaperScissors(player, computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
-        if (player === computer){
-            console.log("Two Rocks, make a draw!")
+    function rockPaperScissors(play = letPlayerChoose(), computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
+        if (play === computer){
+            console.log("Both of you chose ${player}, make a draw!")
         }
-        else if (computer===2){
-            console.log("Paper wraps your Rock, you lose!")
+        else if (play === 1){
+            switch(computer){
+                case 2: console.log("The computer paper wraps your Rock, you lose!"); break;
+                case 3: console.log("Your rock smashes the computer's scissors, you win!"); break;
+            }
         }
-        else {
-            console.log("You won!")
+        else if (play === 2){
+            switch(computer){
+                case 1: console.log("Your paper wraps the computer's rock, you win"); break;
+                case 3: console.log("Your paper is cut by the computer's scissors, you lose!"); break;
+            }
+        }
+        else if (play === 3){
+            switch(computer){
+                case 2: console.log("The computer paper is cut by your scissors, you win!"); break;
+                case 1: console.log("The rock smashes your scissors, you lose!"); break;
+            }
         }
     }
+    
 
 let player = ""
 </script>
