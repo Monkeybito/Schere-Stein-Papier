@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function getComputerChoice(){
+        let computerChoice = Math.floor(Math.random()*(3)+1);
+       
+        
+        return computerChoice
+    }
+
+    function letPlayerChoose(){
+        while (true){
+            let playerChoice = prompt("Choose: Rock, Paper or Scissors!").toLowerCase();
+            if (playerChoice === "rock" || playerChoice=== "paper" || playerChoice === "scissors"){
+                console.log(playerChoice)
+                break
+            }
+            else {
+                console.log("Please choose: Rock, Paper or Scissors. Was it written correctly?")
+            }
+
+        }
+    }
+    
+    function rockPaperScissors(player, computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
+        if (player=== computer){
+            console.log("Two Rocks, make a draw!")
+        }
+        else if (computer===2){
+            console.log("Paper wraps your Rock, you lose!")
+        }
+        else {
+            console.log("You won!")
+        }
+    }
+
+const player = 1
+</script>
+</html>
