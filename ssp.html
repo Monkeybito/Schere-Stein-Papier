@@ -12,6 +12,9 @@
         let computerChoice = Math.floor(Math.random()*(3)+1);
         return computerChoice
     }
+    
+    let player = ""
+    let count = 0
 
     function letPlayerChoose(){
         while (true){
@@ -34,7 +37,7 @@
     
     function rockPaperScissors(play = letPlayerChoose(), computer = getComputerChoice()){                                                                               // rock = 1, paper = 2, scissors = 3;
         if (play === computer){
-            console.log("Both of you chose ${player}, make a draw!")
+            console.log(`Both of you chose ${player}, that makes a draw!`)
         }
         else if (play === 1){
             switch(computer){
@@ -56,7 +59,11 @@
         }
     }
     
+    function game(){
+        console.log("We are going to play five rounds of rock, paper and scissors!")
+        count = 0
+    }
 
-let player = ""
+
 </script>
 </html>
