@@ -10,8 +10,6 @@
 <script>
     function getComputerChoice(){
         let computerChoice = Math.floor(Math.random()*(3)+1);
-       
-        
         return computerChoice
     }
 
@@ -19,8 +17,12 @@
         while (true){
             let playerChoice = prompt("Choose: Rock, Paper or Scissors!").toLowerCase();
             if (playerChoice === "rock" || playerChoice=== "paper" || playerChoice === "scissors"){
-                console.log(playerChoice)
-                break
+            switch (playerChoice){
+                case "rock": playerChoice = 1; break
+                case "paper": playerChoice = 2; break
+                case "scissors": playerChoice = 3; break
+            }
+            return playerChoice
             }
             else {
                 console.log("Please choose: Rock, Paper or Scissors. Was it written correctly?")
