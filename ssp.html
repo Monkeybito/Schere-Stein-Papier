@@ -5,84 +5,100 @@
     <title>Document</title>
 </head>
 <body>
-    
+<h2>Who will win? The Machine or Banu! Whoever gets 5 points first wins!</h2>
+<div class="container">
+    <button class="rock">Rock</button>
+    <button class="paper">Paper</button>
+    <button class="scissors">Scissors</button>
+    <div class="round"></div>
+    <div>Your Score: <div class="player-score">0</div></div>
+    <div>The Machine's Scors: <div class="computer-score">0</div></div>
+</div>
 </body>
 <script>
     function getComputerChoice(){
         let computerChoice = Math.floor(Math.random()*(3)+1);
+        switch(computerChoice){
+            case 1: computerChoice ="rock"; break
+            case 2: computerChoice= "paper"; break
+            case 3: computerChoice="scissors"; break 
+        }
         return computerChoice
     }
-    
-    let player = "";
+   
     let computerCount = 0;
     let playerCount= 0;
 
-    function letPlayerChoose(){
-        while (true){
-            let playerChoice = prompt("Choose: Rock, Paper or Scissors!").toLowerCase();
-            player = playerChoice;
-            if (playerChoice === "rock" || playerChoice=== "paper" || playerChoice === "scissors"){
-            switch (playerChoice){
-                case "rock": playerChoice = 1; break
-                case "paper": playerChoice = 2; break
-                case "scissors": playerChoice = 3; break
-            }
-            return playerChoice
-            }
-            else {
-                console.log("Please choose: Rock, Paper or Scissors. Was it written correctly?")
-            }
+  
 
+
+    const buttons = document.querySelectorAll("button")
+    buttons.forEach(button => button.addEventListener('click', function(e){
+        rockPaperScissors(this.className)
+        if (computerCount == 5){
+            let computerfield = document.createElement("div");
+            const container = document.querySelector(".container")
+            computerfield.textContent="The Machine has destroyed Banu :O :O :O"
+            container.appendChild(computerfield)
         }
-    }
+        else if (playerCount == 5){
+            let playerfield = document.createElement("div");
+            const container = document.querySelector(".container")
+            playerfield.textContent="Banu has saved Humanity!"
+            container.appendChild(playerfield)
+        }
+        return;
+    }));
+   
     
-    function rockPaperScissors(play, computer){                                                                               // rock = 1, paper = 2, scissors = 3;
+            
+    function rockPaperScissors(play, computer = getComputerChoice()){
+        let display = document.querySelector("div.round")
+        let playerscore = document.querySelector("div.player-score");
+        let computerscore = document.querySelector("div.computer-score")                                                                            
         if (play === computer){
-            console.log(`Both of you chose ${player}, that makes a draw!`)
+            display.textContent= `Both of you chose ${play}, that makes a draw!`;
+            return
         }
-        else if (play === 1){
+        else if (play === "rock"){
             switch(computer){
-                case 2: console.log("The computer paper wraps your Rock, you lose!"); return computerCount++;
-                case 3: console.log("Your rock smashes the computer's scissors, you win!"); return playerCount++;
+                case "paper": display.textContent= "The computer paper wraps your Rock, you lose!"; 
+                computerCount++; 
+                computerscore.textContent = computerCount;
+                return;
+                case "scissors": display.textContent= "Your rock smashes the computer's scissors, you win!"; 
+                playerCount++;
+                playerscore.textContent = playerCount;
+                return;
             }
         }
-        else if (play === 2){
+        else if (play === "paper"){
             switch(computer){
-                case 1: console.log("Your paper wraps the computer's rock, you win"); return playerCount++;
-                case 3: console.log("Your paper is cut by the computer's scissors, you lose!"); return computerCount++;
+                case "rock": display.textContent ="Your paper wraps the computer's rock, you win";  
+                playerCount++;
+                playerscore.textContent = playerCount;
+                return;
+                case "scissors": display.textContent="Your paper is cut by the computer's scissors, you lose!"; 
+                computerCount++;
+                computerscore.textContent = computerCount;
+                return;
             }
         }
-        else if (play === 3){
+        else if (play === "scissors"){
             switch(computer){
-                case 2: console.log("The computer paper is cut by your scissors, you win!"); return playerCount++;
-                case 1: console.log("The rock smashes your scissors, you lose!"); return computerCount++;
+                case "paper": display.textContent= "The computer paper is cut by your scissors, you win!";  
+                playerCount++;
+                playerscore.textContent = playerCount;
+                return;
+                case "rock": display.textContent = "The rock smashes your scissors, you lose!";  
+                computerCount++;
+                computerscore.textContent = computerCount;
+                return;
             }
         }
     }
     
-    function game(){
-        console.log("We are going to play five rounds of rock, paper and scissors!")
-        let count = 0;
-        playerCount = 0;
-        computerCount = 0;
-        while (count < 5){
-            rockPaperScissors(letPlayerChoose(), getComputerChoice());
-            console.log("You won " + playerCount + " games.");
-            console.log("The computer won " + computerCount + " games.")
-            count++
-        }
-        if (computerCount > playerCount) {
-            console.log("The computer has won. Long live the machine!")
-        }
-        else if (playerCount > computerCount){
-            console.log("You did win!")
-        }
 
-        else{
-            console.log("An unexpected draw :O")
-        }
-
-    }
 
 
 </script>
